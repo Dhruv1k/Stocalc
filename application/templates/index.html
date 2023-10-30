@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <title>Compound Interest Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <h1>Compound Interest Calculator</h1>
+    <form method="POST" action="/">
+        <label for="principal">Principal Amount (₹):</label>
+        <input type="number" name="principal" required
+            value="{{ form_data['principal'] if form_data['principal'] is defined else '' }}"><br>
+
+        <label for="rate">Annual Interest Rate (%):</label>
+        <input type="number" name="rate" step="0.01" required
+            value="{{ form_data['rate'] if form_data['rate'] is defined else '' }}"><br>
+
+        <label for="times">Number of Times Interest Compounded Per Year:</label>
+        <input type="number" name="times" required
+            value="{{ form_data['times'] if form_data['times'] is defined else '' }}"><br>
+
+        <label for="num_of_years">Number of Years:</label>
+        <input type="number" name="num_of_years" required
+            value="{{ form_data['num_of_years'] if form_data['num_of_years'] is defined else '' }}"><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    {% if returns %}
+    <h2>Result:</h2>
+    <p>The final amount after compound interest is ₹{{ returns }}</p>
+    {% endif %}
+</body>
+
+</html>

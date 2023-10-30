@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>Stock Return Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/stock_calculator.css">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <h1>Stock Return Calculator</h1>
+    <form method="POST" action="/stock_calculator">
+        <label for="cmp">CMP (₹):</label>
+        <input type="number" name="cmp" required
+            value="{{ form_data['CMP_Decimal'] if form_data['CMP_Decimal'] is defined else '' }}"><br>
+
+        <label for="tg">Tg (₹):</label>
+        <input type="number" name="tg" required
+            value="{{ form_data['Tg_Decimal'] if form_data['Tg_Decimal'] is defined else '' }}"><br>
+
+        <label for="sl">SL (₹):</label>
+        <input type="number" name="sl" required
+            value="{{ form_data['SL_Decimal'] if form_data['SL_Decimal'] is defined else '' }}"><br>
+
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    {% if Tg_Percen and SL_Percen %}
+    <h2>Results:</h2>
+    <p>Target: {{ Tg_Percen }}%</p>
+    <p>SL: {{ SL_Percen }}%</p>
+    {% endif %}
+</body>
+
+</html>
